@@ -1,5 +1,4 @@
 $(function () {
-
   $.ajaxSetup({
     headers:{
         'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
@@ -20,11 +19,31 @@ $(function () {
   loadCalendar();
 
 });
+
+$('#event-room').select2({
+  dropdownParent: $('#addEventPopup'),
+  placeholder: 'Pilih Ruangan',
+  allowClear: true,
+  ajax: {
+      type: 'GET',
+      url: '/selectRoom',
+      data: function(params) {
+          let query = {
+              search: params.term,
+              page: params.page || 1
+          }
+
+          return query;
+      },
+      delay: 500
+  }
+});
+
 const loadCalendar = () => {
 
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
-        timeZone: 'UTC',
+        timeZone: 'local',
         initialView : 'dayGridMonth',
         themeSystem: 'bootstrap',
         headerToolbar: {
@@ -32,7 +51,7 @@ const loadCalendar = () => {
           center: null,
           right: 'today dayGridMonth,timeGridWeek,timeGridDay,listWeek'
         },
-        events: '/ajax_gt_jadwal',
+        events: '/gtCalendarPenjadwalan',
         height: 800,
         eventRender: [], 
         contentHeight: 780,
@@ -63,7 +82,7 @@ const loadCalendar = () => {
           }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                  url: "/prosesJadwal",
+                  url: "/processJadwal",
                   type : "POST",
                   data :{
                       id: res.event._def.publicId,
@@ -111,7 +130,7 @@ const loadCalendar = () => {
           }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                  url: "/prosesHapusJadwal",
+                  url: "/deleteJadwal",
                   type : "POST",
                   data :{
                       id: res.event._def.publicId

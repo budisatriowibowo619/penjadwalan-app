@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MasterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,14 +15,22 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index']);
 
+// -- Page -- // 
 Route::get('/home', [HomeController::class, 'index']);
+// -- End Page -- //
 
-Route::get('/ajax_gt_jadwal', [HomeController::class, 'ajax_gt_all_tb_jadwal']);
+// -- Ajax -- //
+# GET #
+Route::get('/gtCalendarPenjadwalan', [HomeController::class, 'ajax_gt_all_tb_jadwal']);
+Route::get('/gtPenjadwalan', [HomeController::class, 'ajax_gt_penjadwalan']);
+Route::get('/selectRoom', [MasterController::class, 'ajax_select_room']);
+# END GET #
 
-Route::post('/prosesJadwal', [HomeController::class, 'ajax_proses_jadwal']);
+# POST #
+Route::post('/processJadwal', [HomeController::class, 'ajax_process_jadwal']);
+Route::post('/deleteJadwal', [HomeController::class, 'ajax_delete_jadwal']);
+# END POST #
+// - End Ajax -- //
 
-Route::post('/prosesHapusJadwal', [HomeController::class, 'ajax_proses_hapus_jadwal']);
