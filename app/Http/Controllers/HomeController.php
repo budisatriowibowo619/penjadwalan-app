@@ -52,7 +52,7 @@ class HomeController extends Controller
 
         if($request->ajax()) {
             
-            if(empty($request->id)){
+            if(empty($request->eventtype)){
 
                 $validator = Validator::make($request->all(), [
                     'title'         => 'required|max:255',
@@ -68,6 +68,7 @@ class HomeController extends Controller
                 
                 Home::prosesJadwal([
                     'type'          => 'insert',
+                    'id'            => $request->id,
                     'title'         => $request->title,
                     'description'   => $request->description,
                     'start_date'    => $request->start_date, 

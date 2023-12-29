@@ -22,7 +22,7 @@ $(document).ready(function () {
 $('#event-room').select2({
     dropdownParent: $('#modalPenjadwalan'),
     placeholder: 'Pilih Ruangan',
-    allowClear: true,
+    // allowClear: true,
     ajax: {
         type: 'GET',
         url: '/selectRoom',
@@ -46,6 +46,10 @@ const clearFormPenjadwalan = () => {
 const showFormPenjadwalan = () => {
     clearFormPenjadwalan();
     $('#modalPenjadwalan').modal('show');
+}
+
+const hideModalPenjadwalan = () => {
+    $('#modalPenjadwalan').modal('hide');
 }
 
 const clearPreviewPenjadwalan = () => {
@@ -78,6 +82,7 @@ const showPreviewPenjadwalan = (id_penjadwalan) => {
             $('#preview-event-start').text(response.convert_start);
             $('#preview-event-end').text(response.convert_end);
             $('#preview-event-description').text(response.description);
+            $('#preview-event-room').text(response.ruangan);
         },
     });
 }
@@ -130,7 +135,8 @@ const loadCalendar = () => {
                         type : "POST",
                         data :{
                             id: res.event._def.publicId,
-                            days: res.delta.days
+                            days: res.delta.days,
+                            eventtype: 'drop'
                         },
                         dataType : "json",
                         success: function(response) {
@@ -233,7 +239,10 @@ const editJadwal = () => {
             $('#event-end-date').val(response.end_date);
             $('#event-end-time').val(response.end_time);
 
-            $("#event-room").val(response.id_room).trigger('change');
+            $("#event-room").val(response.id_room).trigger("change");
+            
+            $('input.warna-checkbox[value="'+response.warna+'"]').prop('checked', true);
+        
         },
     });
 }

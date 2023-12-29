@@ -42,7 +42,7 @@
                 </div>
                 <div class="modal-body">
                     <form action="#" id="formAddPenjadwalan" method="POST" class="form-validate is-alter">
-                        <input type="hidden" id="idPenjadwalan">
+                        <input type="hidden" id="idPenjadwalan" name="id">
                         <div class="row gx-4 gy-3">
                             <div class="col-12">
                                 <div class="form-group">
@@ -120,42 +120,42 @@
                                     <ul class="custom-control-group g-2 align-center flex-wrap mt-0">
                                         <li>
                                             <div class="custom-control custom-radio custom-control-sm">
-                                                <input type="radio" class="custom-control-input" id="radioWarnaUngu" name="warna_tampilan" value="fc-event-primary-dim" required>
+                                                <input type="radio" class="custom-control-input warna-checkbox" id="radioWarnaUngu" name="warna_tampilan" value="fc-event-primary-dim" required>
                                                 <label for="radioWarnaUngu" class="custom-control-label"><span class="badge badge-dim rounded-pill bg-primary">Ungu</span></label>
                                             </div>
                                         </li>
                                         |
                                         <li>
                                             <div class="custom-control custom-radio custom-control-sm">
-                                                <input type="radio" class="custom-control-input" id="radioWarnaHijau" name="warna_tampilan" value="fc-event-success-dim">
+                                                <input type="radio" class="custom-control-input warna-checkbox" id="radioWarnaHijau" name="warna_tampilan" value="fc-event-success-dim">
                                                 <label for="radioWarnaHijau" class="custom-control-label"><span class="badge badge-dim rounded-pill bg-success">Hijau</span></label>
                                             </div>
                                         </li>
                                         |
                                         <li>
                                             <div class="custom-control custom-radio custom-control-sm">
-                                                <input type="radio" class="custom-control-input" id="radioWarnaJingga" name="warna_tampilan" value="fc-event-warning-dim">
+                                                <input type="radio" class="custom-control-input warna-checkbox" id="radioWarnaJingga" name="warna_tampilan" value="fc-event-warning-dim">
                                                 <label for="radioWarnaJingga" class="custom-control-label"><span class="badge badge-dim rounded-pill bg-warning">Jingga</span></label>
                                             </div>
                                         </li>
                                         |
                                         <li>
                                             <div class="custom-control custom-radio custom-control-sm">
-                                                <input type="radio" class="custom-control-input" id="radioWarnaMerah" name="warna_tampilan" value="fc-event-danger-dim">
+                                                <input type="radio" class="custom-control-input warna-checkbox" id="radioWarnaMerah" name="warna_tampilan" value="fc-event-danger-dim">
                                                 <label for="radioWarnaMerah" class="custom-control-label"><span class="badge badge-dim rounded-pill bg-danger">Merah</span></label>
                                             </div>
                                         </li>
                                         |
                                         <li>
                                             <div class="custom-control custom-radio custom-control-sm">
-                                                <input type="radio" class="custom-control-input" id="radioWarnaBiru" name="warna_tampilan" value="fc-event-info-dim">
+                                                <input type="radio" class="custom-control-input warna-checkbox" id="radioWarnaBiru" name="warna_tampilan" value="fc-event-info-dim">
                                                 <label for="radioWarnaBiru" class="custom-control-label"><span class="badge badge-dim rounded-pill bg-info">Biru</span></label>
                                             </div>
                                         </li>
                                         |
                                         <li>
                                             <div class="custom-control custom-radio custom-control-sm">
-                                                <input type="radio" class="custom-control-input" id="radioWarnaAbu" name="warna_tampilan" value="fc-event-dark-dim">
+                                                <input type="radio" class="custom-control-input warna-checkbox" id="radioWarnaAbu" name="warna_tampilan" value="fc-event-dark-dim">
                                                 <label for="radioWarnaAbu" class="custom-control-label"><span class="badge badge-dim rounded-pill bg-dark">Abu-Abu</span></label>
                                             </div>
                                         </li>
@@ -166,10 +166,10 @@
                             <div class="col-12">
                                 <ul class="d-flex justify-content-between gx-4 mt-1">
                                     <li>
-                                        <button id="btnAddEvent" type="submit" class="btn btn-primary">Add Event</button>
+                                        <button id="btnAddEvent" type="submit" class="btn btn-primary"><em class="icon ni ni-save"></em><span>Simpan Data</span></button>
                                     </li>
                                     <li>
-                                        <button id="resetEvent" data-bs-dismiss="modal" class="btn btn-danger btn-dim">Discard</button>
+                                        <button onclick="hideModalPenjadwalan()" type="buttton" class="btn btn-danger btn-dim">Tutup Form</button>
                                     </li>
                                 </ul>
                             </div>
@@ -202,13 +202,18 @@
                             <h6 class="overline-title">Tanggal Selesai</h6>
                             <p id="preview-event-end"></p>
                         </div>
-                        <div class="col-sm-10" id="preview-event-description-check">
+                        <div class="col-sm-12" id="preview-event-description-check">
                             <h6 class="overline-title">Deskripsi</h6>
-                            <p id="preview-event-description"></p>
+                            <p id="preview-event-description" style="text-align: justify;"></p>
+                        </div>
+                        <div class="col-sm-12" id="preview-event-room-check">
+                            <h6 class="overline-title">Ruangan</h6>
+                            <p id="preview-event-room"></p>
                         </div>
                     </div>
                     <ul class="d-flex justify-content-between gx-4 mt-3">
                         <li>
+                            <button type="button" onclick="editJadwal()" class="btn btn-primary">Ubah Jadwal</button>
                         </li>
                         <li>
                             <button type="button" onclick="deleteJadwal()" class="btn btn-danger btn-dim">Hapus Jadwal</button>

@@ -61,6 +61,7 @@ class Home
 
         if(!empty($id)){
             $get_penjadwalan = DB::table('schedules')->where('id', $id)->first();
+            $get_room = DB::table('ms_room')->where('id', $get_penjadwalan->id_room)->first();
             $arr_penjadwalan = [
                 'id'                => $get_penjadwalan->id,
                 'id_room'           => $get_penjadwalan->id_room,
@@ -69,6 +70,7 @@ class Home
                 'start_datetime'    => $get_penjadwalan->start_datetime,
                 'end_datetime'      => $get_penjadwalan->end_datetime,
                 'warna'             => $get_penjadwalan->warna,
+                'ruangan'           => isset($get_room->nama_ruangan) ? $get_room->nama_ruangan : 0,
                 'start_date'        => date("Y-m-d", strtotime($get_penjadwalan->start_datetime)),
                 'end_date'          => date("Y-m-d", strtotime($get_penjadwalan->end_datetime)),
                 'start_time'        => date("H:i:s", strtotime($get_penjadwalan->start_datetime)),
@@ -89,6 +91,7 @@ class Home
 
         if($type == "insert") {
 
+            $id = isset($params['id']) ? $params['id'] : 0;
             $title = isset($params['title']) ? $params['title'] : '';
             $description = isset($params['description']) ? $params['description'] : '';
             $start_date = isset($params['start_date']) ? $params['start_date'] : '0000-00-00';
@@ -98,21 +101,37 @@ class Home
             $ruangan = isset($params['ruangan']) ? $params['ruangan'] : 0;
             $warna = isset($params['warna']) ? $params['warna'] : 'fc-event-primary-dim';
 
-            $arr_schedules = [
-                'title'             => $title,
-                'description'       => $description,
-                'start_datetime'    => $start_date.' '.$start_time,
-                'end_datetime'      => $end_date.' '.$end_time,
-                'id_room'           => $ruangan,
-                'warna'             => $warna,
-                'created_at'        => now()
-            ];
+            if(empty($id)){
+                $arr_schedules = [
+                    'title'             => $title,
+                    'description'       => $description,
+                    'start_datetime'    => $start_date.' '.$start_time,
+                    'end_datetime'      => $end_date.' '.$end_time,
+                    'id_room'           => $ruangan,
+                    'warna'             => $warna,
+                    'created_at'        => now()
+                ];
+            } else {
+                $arr_schedules = [
+                    'title'             => $title,
+                    'description'       => $description,
+                    'start_datetime'    => $start_date.' '.$start_time,
+                    'end_datetime'      => $end_date.' '.$end_time,
+                    'id_room'           => $ruangan,
+                    'warna'             => $warna,
+                    'updated_at'        => now()
+                ];
+            }
 
             DB::beginTransaction();
 
             try {
 
-                DB::table('schedules')->insert([$arr_schedules]);
+                if(empty($id)){
+                    DB::table('schedules')->insert([$arr_schedules]);
+                } else {
+                    DB::table('schedules')->where('id', $id)->update($arr_schedules);
+                }
 
                 DB::commit();
 
