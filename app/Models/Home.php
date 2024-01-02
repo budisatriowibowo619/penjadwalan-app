@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 use App\Models\Home;
 
@@ -215,5 +216,13 @@ class Home
 
         }
     }
+
+    // public static function insert_user()
+    // {
+    //     DB::table('users')->insert([
+    //         'name'      => 'admin',
+    //         'password'  => Hash::make('1234')
+    //     ]);
+    // }
 
 }

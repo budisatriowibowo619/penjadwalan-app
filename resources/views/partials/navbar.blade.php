@@ -14,8 +14,7 @@
                         <div class="nk-header-mobile">
                             <div class="nk-header-brand">
                                 <a href="html/index.html" class="logo-link">
-                                    <img class="logo-light logo-img" src="./images/logo.png" srcset="./images/logo2x.png 2x" alt="logo">
-                                    <img class="logo-dark logo-img" src="./images/logo-dark.png" srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
+                                    <em class="ni ni-calendar-alt"></em> Aplikasi Penjadwalan
                                 </a>
                             </div>
                             <div class="nk-menu-trigger me-n2">
@@ -34,6 +33,7 @@
                                 </ul><!-- .nk-menu-sub -->
                             </li><!-- .nk-menu-item -->
                         </ul><!-- .nk-menu -->
+                    </div>
                     </div><!-- .nk-header-menu -->
                 </div><!-- .nk-header-wrap -->
             </div><!-- .container-fliud -->

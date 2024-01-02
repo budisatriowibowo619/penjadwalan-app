@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MasterController;
 
 /*
@@ -17,6 +18,9 @@ use App\Http\Controllers\MasterController;
 
 Route::get('/', [HomeController::class, 'index']);
 
+Route::get('/login', [LoginController::class, 'index']);
+Route::get('/logout', [LoginController::class, 'logout']);
+
 // -- Page -- // 
 Route::get('/home', [HomeController::class, 'index']);
 // -- End Page -- //
@@ -29,8 +33,12 @@ Route::get('/selectRoom', [MasterController::class, 'ajax_select_room']);
 # END GET #
 
 # POST #
+Route::post('/processLogin', [LoginController::class, 'ajax_process_login']);
 Route::post('/processJadwal', [HomeController::class, 'ajax_process_jadwal']);
 Route::post('/deleteJadwal', [HomeController::class, 'ajax_delete_jadwal']);
 # END POST #
 // - End Ajax -- //
 
+# Insert #
+Route::get('/insert', [HomeController::class, 'insert_user']);
+# End Insert #

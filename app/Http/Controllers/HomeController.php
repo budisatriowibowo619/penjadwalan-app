@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use Session;
 
 use App\Models\Home;
 
@@ -11,10 +13,17 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('home', [
-            'page'      => 'Home',
-            'js_script' => '/js/home.js' 
-        ]);
+        if(Auth::check()){
+            return view('auth/home', [
+                'page'      => 'Home',
+                'js_script' => '/js/auth/home.js' 
+            ]);
+        } else {
+            return view('home', [
+                'page'      => 'Home',
+                'js_script' => '/js/home.js' 
+            ]);
+        }
     }
 
     public function ajax_gt_all_tb_jadwal(Request $request)
@@ -151,5 +160,12 @@ class HomeController extends Controller
 
         }
     }
+
+    // public function insert_user()
+    // {
+    //     $test = Home::insert_user();
+
+    //     print_r($test); exit;
+    // }
 
 }
