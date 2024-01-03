@@ -7,11 +7,12 @@ $(document).ready(function () {
 
     $("#event-start-date").datepicker();
 
-    $("#event-start-time").timepicker({
+    var startTime = $("#event-start-time").timepicker({
       timeFormat: 'HH:mm'
     });
   
     $("#event-end-date").datepicker();
+    
     $("#event-end-time").timepicker({
       timeFormat: 'HH:mm'
     });
@@ -114,9 +115,12 @@ const loadCalendar = () => {
         },
         selectable: true,
         select: function (res) {
+            console.log(res);
             $('#modalPenjadwalan').modal('show'); 
             $('#event-start-date').val(res.startStr);
-            $('#event-end-date').val(res.endStr);
+            $('#event-end-date').val(res.startStr);
+            $('#event-start-time').val('00:00');
+            $('#event-end-time').val('00:00');
         },
         eventDrop: function (res) {
             // console.log(res);
@@ -248,6 +252,8 @@ const editJadwal = () => {
 }
 
 $('#formAddPenjadwalan').submit(function(event) {
+    $('#btnAddEvent').prop('disabled', true);
+    $('#btnAddEvent').html('...Menyimpan');
     event.preventDefault();
     formData = new FormData($(this)[0]);
     $.ajax({
@@ -273,7 +279,11 @@ $('#formAddPenjadwalan').submit(function(event) {
                 showCancelButton: false,
                 showConfirmButton: false,
                 allowOutsideClick: false,
-                onAfterClose: () => $('#modalPenjadwalan').modal('hide')
+                onAfterClose: () => {
+                    $('#modalPenjadwalan').modal('hide');
+                    $('#btnAddEvent').prop('disabled', false);
+                    $('#btnAddEvent').html('<em class="icon ni ni-save"></em><span>Simpan Data</span>');
+                }
             });
             loadCalendar();
         },

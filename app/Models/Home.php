@@ -217,12 +217,4 @@ class Home
         }
     }
 
-    // public static function insert_user()
-    // {
-    //     DB::table('users')->insert([
-    //         'name'      => 'admin',
-    //         'password'  => Hash::make('1234')
-    //     ]);
-    // }
-
 }

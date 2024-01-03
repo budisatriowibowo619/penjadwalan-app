@@ -161,11 +161,4 @@ class HomeController extends Controller
         }
     }
 
-    // public function insert_user()
-    // {
-    //     $test = Home::insert_user();
-
-    //     print_r($test); exit;
-    // }
-
 }
