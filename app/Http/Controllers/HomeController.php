@@ -66,8 +66,8 @@ class HomeController extends Controller
                 $validator = Validator::make($request->all(), [
                     'title'         => 'required|max:255',
                     'description'   => 'required',
-                    'start_date'    => 'required',
-                    'end_date'      => 'required',
+                    'start_date'    => 'required|date',
+                    'end_date'      => 'required|date|after:start_date',
                     'ruangan'       => 'required'
                 ]);
 

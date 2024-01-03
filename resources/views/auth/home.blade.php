@@ -169,7 +169,7 @@
                                         <button id="btnAddEvent" type="submit" class="btn btn-primary"><em class="icon ni ni-save"></em><span>Simpan Data</span></button>
                                     </li>
                                     <li>
-                                        <button onclick="hideModalPenjadwalan()" type="buttton" class="btn btn-danger btn-dim">Tutup Form</button>
+                                        <a href="#" data-bs-dismiss="modal" class="btn btn-danger btn-dim">Tutup Form</a>
                                     </li>
                                 </ul>
                             </div>

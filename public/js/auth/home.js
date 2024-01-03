@@ -7,7 +7,7 @@ $(document).ready(function () {
 
     $("#event-start-date").datepicker();
 
-    var startTime = $("#event-start-time").timepicker({
+    $("#event-start-time").timepicker({
       timeFormat: 'HH:mm'
     });
   
@@ -115,7 +115,7 @@ const loadCalendar = () => {
         },
         selectable: true,
         select: function (res) {
-            console.log(res);
+            // console.log(res);
             $('#modalPenjadwalan').modal('show'); 
             $('#event-start-date').val(res.startStr);
             $('#event-end-date').val(res.startStr);

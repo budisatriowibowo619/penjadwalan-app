@@ -71,7 +71,7 @@ CREATE TABLE `ms_room` (
   `nama_ruangan` text DEFAULT NULL,
   `status` int(1) DEFAULT 1,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 #
 # Dumping data for table ms_room
@@ -155,7 +155,7 @@ CREATE TABLE `schedules` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   `status` int(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 #
 # Dumping data for table schedules
@@ -170,6 +170,9 @@ INSERT INTO `schedules` VALUES (4,2,'Testing Tanggal 1','Deskripsi','2023-12-01 
 INSERT INTO `schedules` VALUES (5,2,'KPNL Kickoff Meeting Test - 2025','Testing penjadwalan','2023-12-03 01:00:00','2023-12-08 01:00:00','fc-event-info-dim','2023-12-29 13:09:50','2023-12-29 13:20:17',NULL,1);
 INSERT INTO `schedules` VALUES (6,1,'1- KPNL Kickoff Meeting Test - 2024','Testing penjadwalan','2023-12-01 01:00:00','2023-12-06 01:00:00','fc-event-primary-dim','2023-12-29 13:15:38','2023-12-29 13:19:05',NULL,1);
 INSERT INTO `schedules` VALUES (7,1,'Lorem Ipsum is simply dummy text of the printing and typesetting industry - 2029','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.','2023-12-14','2023-12-17 02:30:00','fc-event-dark-dim','2023-12-29 13:26:50','2023-12-29 13:40:06',NULL,1);
+INSERT INTO `schedules` VALUES (8,5,'MAIDA MAYA BELINDA','Aku Cinta Protokoler','2024-01-01 00:30:00','2024-01-07 08:00:00','fc-event-info-dim','2024-01-01 10:53:45','2024-01-01 10:57:56','2024-01-02 10:29:34',9);
+INSERT INTO `schedules` VALUES (9,4,'Panic At The Disco! - Meeting Kickoff - January 2024','Death Of The Bachelor','2024-01-09 01:00:00','2024-01-16 03:00:00','fc-event-info-dim','2024-01-03 02:02:58','2024-01-03 02:04:18',NULL,1);
+INSERT INTO `schedules` VALUES (10,2,'Kick Off Meeting - A$AP FERG','Deskripsi','2024-01-03','2024-01-04 23:30:00','fc-event-warning-dim','2024-01-03 02:13:02','2024-01-03 08:28:58',NULL,1);
 /*!40000 ALTER TABLE `schedules` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -181,13 +184,11 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `users_email_unique` (`email`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 #
@@ -196,6 +197,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'admin','$2y$10$rJCrclpx5CNGgHl0NJSZbeFhQaEyn25glqi3RO4PK4bhzGsQcY6Fq',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
